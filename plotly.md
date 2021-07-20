@@ -328,8 +328,8 @@ Let's change to a different colourmap:
 Open a terminal window inside Jupyter (New-Terminal) and run these commands:
 
 ~~~ {.bash}
-wget http://bit.ly/paraviewzip
-unzip paraviewzip
+wget http://jarno.ca/pv.zip
+unzip pw.zip
 mv data/*.csv .
 mv data/*.nc .
 ~~~
@@ -344,7 +344,7 @@ py.init_notebook_mode(connected=True)
 import plotly.graph_objs as go
 import pandas as pd
 from math import log10
-df = pd.read_csv('/project/shared/astro/data/cities.csv')   # lists name,pop,lat,lon for 254 Canadian cities and towns
+df = pd.read_csv('cities.csv')   # lists name,pop,lat,lon for 254 Canadian cities and towns
 df['text'] = df['name'] + '<br>Population ' + \
              (df['pop']/1e6).astype(str) +' million' # add new column for mouse-over
 
