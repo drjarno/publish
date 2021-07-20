@@ -388,7 +388,7 @@ import plotly.offline as py
 py.init_notebook_mode(connected=True)
 import plotly.graph_objs as go
 import pandas as pd
-df = pd.read_csv('/project/shared/astro/data/cities.csv')
+df = pd.read_csv('cities.csv')
 df['text'] = df['name'] + '<br>Population ' + \
              (df['pop']/1e6).astype(str)+' million' # add new column for mouse-over
 cities = go.Scattergeo(lon = df['lon'],
@@ -399,7 +399,7 @@ cities = go.Scattergeo(lon = df['lon'],
                            color = "lightblue",
                            line = dict(width=0.5, color='rgb(40,40,40)'),
                            sizemode = 'area'))
-gdp = pd.read_csv('/project/shared/astro/data/gdp.csv')   # read name, gdp, code for 222 countries
+gdp = pd.read_csv('gdp.csv')   # read name, gdp, code for 222 countries
 c1 = [0,"rgb(5, 10, 172)"]     # define colourbar from top (0) to bottom (1)
 c2, c3 = [0.35,"rgb(40, 60, 190)"], [0.5,"rgb(70, 100, 245)"]
 c4, c5 = [0.6,"rgb(90, 120, 245)"], [0.7,"rgb(106, 137, 247)"]
@@ -429,7 +429,7 @@ import plotly.offline as py
 py.init_notebook_mode(connected=True)
 import plotly.graph_objs as go
 import pandas as pd
-table = pd.read_csv('/project/shared/astro/data/mt_bruno_elevation.csv')
+table = pd.read_csv('mt_bruno_elevation.csv')
 data = go.Surface(z=table.values)  # use 2D numpy array format
 layout = go.Layout(title='Mt Bruno Elevation',
                    width=800, height=800,    # image size
@@ -508,7 +508,7 @@ import plotly.offline as py
 py.init_notebook_mode(connected=True)
 import plotly.graph_objs as go
 import pandas as pd
-df = pd.read_csv('/project/shared/astro/data/legatum2015.csv')
+df = pd.read_csv('legatum2015.csv')
 spheres = go.Scatter3d(x=df.economy,
                        y=df.entrepreneurshipOpportunity,
                        z=df.governance,
