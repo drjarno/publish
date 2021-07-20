@@ -454,7 +454,7 @@ from numpy import *
 n = 100   # plot resolution
 x = linspace(0,1,n)
 y = linspace(0,1,n)
-Y, X = meshgrid(x, y)   # meshgrid() returns two 2D arrays storing x/y respectively at each mesh point
+X, Y = meshgrid(x, y)   # meshgrid() returns two 2D arrays storing x/y respectively at each mesh point
 F = (1-Y)*sin(pi*X) + Y*(sin(2*pi*X))**2   # array operation
 data = go.Surface(z=F, colorscale='Viridis')
 layout = go.Layout(width=1000, height=1000, scene=go.Scene(zaxis=go.layout.scene.ZAxis(range=[-1,2])));
