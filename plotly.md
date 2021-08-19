@@ -136,17 +136,18 @@ By default this will auto-open the file, but you can also use `auto_open=False` 
 $ jupyter notebook
 ~~~
 
-**(Option 2)** Log in to https://syzygy.ca with your university ID. This website is maintained/hosted by
-PIMS, Compute Canada, and Cybera.
+**(Option 2)** Log in to https://visualize2021.c3.ca with your guest account.
 
 1. start a new Python 3 notebook
+1. in the first line use `import plotly.io`
+1. followed by `plotly.io.renderers.default='iframe'`
 1. in the first line use `import plotly.offline as py`
-1. specify `py.init_notebook_mode(connected=True)`
 1. in the last line change `py.plot()` to `py.iplot()`
 
 ~~~ {.python}
+import plotly.io
+plotly.io.renderers.default='iframe'
 import plotly.offline as py
-py.init_notebook_mode(connected=True)
 import plotly.graph_objs as go
 from numpy import linspace, sin
 x1 = linspace(0.01,1,100)
@@ -155,10 +156,6 @@ trace1 = go.Scatter(x=x1, y=y1, mode='lines+markers', name='sin(1/x)')
 data = [trace1]
 py.iplot(data)   # create a unique URL and open the plot inline in a Jupyter Notebook
 ~~~
-
-* `connected=True` will use the online plotly.js library inside the notebook (smaller notebook file sizes)
-* `connected=False` will include plotly.js into the notebook for complete offline work (larger files
-  sizes, also need to modify some notebook settings before it works)
 
 # 2D plots: deeper dive
 ## Scatter plots
