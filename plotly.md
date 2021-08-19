@@ -184,8 +184,10 @@ the plotting routine.
 In fact, we can rewrite this routine with dictionaries:
 
 ~~~ {.python}
+import plotly.io
+plotly.io.renderers.default='iframe'
 import plotly.offline as py
-py.init_notebook_mode(connected=True)
+import plotly.graph_objs as go
 from numpy import linspace, sin
 x1 = linspace(0.01,1,100)
 y1 = sin(1/x1)
@@ -218,7 +220,7 @@ import plotly.graph_objs as go
 dir(go)
 ~~~
 ~~~
-['AngularAxis', 'Annotation', 'Annotations', 'Area', 'Bar', 'Box', 'Candlestick', 'Carpet', 'Choropleth', 'ColorBar', 'Contour', 'Contourcarpet', 'Contours', 'Data', 'ErrorX', 'ErrorY', 'ErrorZ', 'Figure', 'Font', 'Frames', 'Heatmap', 'Heatmapgl', 'Histogram', 'Histogram2d', 'Histogram2dContour', 'Histogram2dcontour', 'Layout', 'Legend', 'Line', 'Margin', 'Marker', 'Mesh3d', 'Ohlc', 'Parcoords', 'Pie', 'Pointcloud', 'RadialAxis', 'Sankey', 'Scatter', 'Scatter3d', 'Scattercarpet', 'Scattergeo', 'Scattergl', 'Scattermapbox', 'Scatterternary', 'Scene', 'Stream', 'Surface', 'Table', 'Trace', 'XAxis', 'XBins', 'YAxis', 'YBins', 'ZAxis', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__path__', '__spec__', 'absolute_import', 'graph_objs', 'graph_objs_tools']
+['AngularAxis', 'Annotation', 'Annotations', 'Bar', 'Barpolar', 'Box', 'Candlestick', 'Carpet', 'Choropleth', 'Choroplethmapbox', 'ColorBar', 'Cone', 'Contour', 'Contourcarpet', 'Contours', 'Data', 'Densitymapbox', 'ErrorX', 'ErrorY', 'ErrorZ', 'Figure', 'FigureWidget', 'Font', 'Frame', 'Frames', 'Funnel', 'Funnelarea', 'Heatmap', 'Heatmapgl', 'Histogram', 'Histogram2d', 'Histogram2dContour', 'Histogram2dcontour', 'Icicle', 'Image', 'Indicator', 'Isosurface', 'Layout', 'Legend', 'Line', 'Margin', 'Marker', 'Mesh3d', 'Ohlc', 'Parcats', 'Parcoords', 'Pie', 'Pointcloud', 'RadialAxis', 'Sankey', 'Scatter', 'Scatter3d', 'Scattercarpet', 'Scattergeo', 'Scattergl', 'Scattermapbox', 'Scatterpolar', 'Scatterpolargl', 'Scatterternary', 'Scene', 'Splom', 'Stream', 'Streamtube', 'Sunburst', 'Surface', 'Table', 'Trace', 'Treemap', 'Violin', 'Volume', 'Waterfall', 'XAxis', 'XBins', 'YAxis', 'YBins', 'ZAxis', 'bar', 'barpolar', 'box', 'candlestick', 'carpet', 'choropleth', 'choroplethmapbox', 'cone', 'contour', 'contourcarpet', 'densitymapbox', 'funnel', 'funnelarea', 'heatmap', 'heatmapgl', 'histogram', 'histogram2d', 'histogram2dcontour', 'icicle', 'image', 'indicator', 'isosurface', 'layout', 'mesh3d', 'ohlc', 'parcats', 'parcoords', 'pie', 'pointcloud', 'sankey', 'scatter', 'scatter3d', 'scattercarpet', 'scattergeo', 'scattergl', 'scattermapbox', 'scatterpolar', 'scatterpolargl', 'scatterternary', 'splom', 'streamtube', 'sunburst', 'surface', 'table', 'treemap', 'violin', 'volume', 'waterfall']
 ~~~
 
 ### Bar plots
@@ -226,8 +228,9 @@ dir(go)
 Let's try a Bar plot, constructing `data` directly in one line from the dictionary:
 
 ~~~ {.python}
+import plotly.io
+plotly.io.renderers.default='iframe'
 import plotly.offline as py
-py.init_notebook_mode(connected=True)
 import plotly.graph_objs as go
 data = [go.Bar(x=['Vancouver', 'Calgary', 'Toronto', 'Montreal', 'Halifax'],
                y=[2463431, 1392609, 5928040, 4098927, 403131])]
@@ -237,8 +240,9 @@ py.iplot(data)
 Let's plot inner city population vs. greater metro area for each city:
 
 ~~~ {.python}
+import plotly.io
+plotly.io.renderers.default='iframe'
 import plotly.offline as py
-py.init_notebook_mode(connected=True)
 import plotly.graph_objs as go
 cities = ['Vancouver', 'Calgary', 'Toronto', 'Montreal', 'Halifax']
 proper = [631486, 1239220, 2731571, 1704694, 316701]
@@ -252,8 +256,9 @@ py.iplot(data)
 Let's now do a stacked plot, with *outer city* population on top of *inner city* population:
 
 ~~~ {.python}
+import plotly.io
+plotly.io.renderers.default='iframe'
 import plotly.offline as py
-py.init_notebook_mode(connected=True)
 import plotly.graph_objs as go
 cities = ['Vancouver', 'Calgary', 'Toronto', 'Montreal', 'Halifax']
 proper = [631486, 1239220, 2731571, 1704694, 316701]
@@ -288,8 +293,9 @@ layout = go.Layout(barmode='stack', title='Population', plot_bgcolor = 'rgb(153,
 Let's plot a heatmap of monthly temperatures at the South Pole:
 
 ~~~ {.python}
+import plotly.io
+plotly.io.renderers.default='iframe'
 import plotly.offline as py
-py.init_notebook_mode(connected=True)
 import plotly.graph_objs as go
 months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Year']
 recordHigh = [-14.4,-20.6,-26.7,-27.8,-25.1,-28.8,-33.9,-32.8,-29.3,-25.1,-18.9,-12.3,-12.3]
@@ -322,11 +328,11 @@ Let's change to a different colourmap:
 
 ### Downloading data
 
-Open a terminal window inside Jupyter (New-Terminal) and run these commands:
+Open a terminal window inside Jupyter ('+'-Terminal) and run these commands:
 
 ~~~ {.bash}
 wget http://jarno.ca/pv.zip
-unzip pw.zip
+unzip pv.zip
 mv data/*.csv .
 mv data/*.nc .
 ~~~
@@ -336,8 +342,9 @@ mv data/*.nc .
 Go back to your Python Jupyter Notebook. Now let's do a scatterplot on top of a geographical map:
 
 ~~~ {.python}
+import plotly.io
+plotly.io.renderers.default='iframe'
 import plotly.offline as py
-py.init_notebook_mode(connected=True)
 import plotly.graph_objs as go
 import pandas as pd
 from math import log10
@@ -381,8 +388,9 @@ Recall how we combined several scatter plots in one figure before. You can combi
 of a single map -- let's **combine scattergeo + choropleth**:
 
 ~~~ {.python}
+import plotly.io
+plotly.io.renderers.default='iframe'
 import plotly.offline as py
-py.init_notebook_mode(connected=True)
 import plotly.graph_objs as go
 import pandas as pd
 df = pd.read_csv('cities.csv')
@@ -422,8 +430,9 @@ py.iplot(fig)
 Let's plot some tabulated topographic elevation data:
 
 ~~~ {.python}
+import plotly.io
+plotly.io.renderers.default='iframe'
 import plotly.offline as py
-py.init_notebook_mode(connected=True)
 import plotly.graph_objs as go
 import pandas as pd
 table = pd.read_csv('mt_bruno_elevation.csv')
@@ -444,8 +453,9 @@ Let's define a different colourmap by adding `colorscale='Viridis'` inside `go.S
 current code:
 
 ~~~ {.python}
+import plotly.io
+plotly.io.renderers.default='iframe'
 import plotly.offline as py
-py.init_notebook_mode(connected=True)
 import plotly.graph_objs as go
 from numpy import *
 n = 100   # plot resolution
@@ -479,8 +489,9 @@ In plotly documentation you can find quite a lot of
 but it still uses `go.Surface(x,y,z)`:
 
 ~~~ {.python}
+import plotly.io
+plotly.io.renderers.default='iframe'
 import plotly.offline as py
-py.init_notebook_mode(connected=True)
 import plotly.graph_objs as go
 from numpy import pi, sin, cos, mgrid
 dphi, dtheta = pi/250, pi/250    # 0.72 degrees
@@ -501,8 +512,9 @@ py.iplot(fig)
 Let's take a look at a 3D scatter plot using the `country index` data from http://www.prosperity.com for 142 countries:
 
 ~~~ {.python}
+import plotly.io
+plotly.io.renderers.default='iframe'
 import plotly.offline as py
-py.init_notebook_mode(connected=True)
 import plotly.graph_objs as go
 import pandas as pd
 df = pd.read_csv('legatum2015.csv')
@@ -535,8 +547,9 @@ edge from the previous generation yields a new node, and the new graph can be ma
 three previous-generation graphs*.
 
 ~~~ {.python}
+import plotly.io
+plotly.io.renderers.default='iframe'
 import plotly.offline as py
-py.init_notebook_mode(connected=True)
 import plotly.graph_objs as go
 import networkx as nx
 import sys
@@ -588,8 +601,9 @@ polygons, and for plotting polygons in plotly we need to use `plotly.figure_fact
 which replaces `plotly.graph_objs.Figure()`:
 
 ~~~ {.python}
+import plotly.io
+plotly.io.renderers.default='iframe'
 import plotly.offline as py
-py.init_notebook_mode(connected=True)
 from plotly import figure_factory as FF
 from numpy import mgrid
 from skimage import measure
